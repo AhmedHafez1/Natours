@@ -1,0 +1,50 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+
+// phone 600px
+// tab-port 900px
+// tab-land 1200px
+// big desktop 1800px
+
+// Using em instead of rem as rem fails on some browsers for mediqueries.
+// em is the best unit for media queries.
+
+@mixin respond($device) {
+  @if $device == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $device == tab-port {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $device == tab-land {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $device == big-desktop {
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
